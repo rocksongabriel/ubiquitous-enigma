@@ -1,0 +1,1 @@
+# definition of the server and it's functionality
