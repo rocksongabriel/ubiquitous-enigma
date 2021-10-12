@@ -65,7 +65,7 @@ class Server:
             device.increase_number_of_tasks() # increase the device's number of tasks
             device.calculate_pheromone_level() # recalculate the pheromone level of the device
             if job_id not in self.get_all_jobs.keys():
-                self._add_job(job_id, device) # add job to all jobs # TODO - don't add a job if it already exists
+                self._add_job(job_id, device) # add job to all jobs
                 self.display_info_on_assigned_job(device, job_id)
             else:
                 print (f"Job ID: {job_id} is currently assigned to: {self.get_all_jobs[job_id]}")
