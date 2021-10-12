@@ -37,7 +37,7 @@ class Server:
         """get the total number of devices connected to this server"""
         return len(self.devices)
 
-    def sort_devices(self):
+    def _sort_devices(self):
         """This method will sort devices on this server according to pheromone level"""
         return sorted(self.get_devices, key=operator.attrgetter("get_pheromone_level"), reverse=True)
 
@@ -60,7 +60,7 @@ class Server:
         if not self.devices:
             print("There are no devices connected to the server, please connect a device ...")
         else:
-            device = self.sort_devices()[0] # device to assign job to
+            device = self._sort_devices()[0] # device to assign job to
             device.set_current_assigned_job(job_id) # assign currently assigned job
             device.increase_number_of_tasks() # increase the device's number of tasks
             device.calculate_pheromone_level() # recalculate the pheromone level of the device
