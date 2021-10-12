@@ -21,8 +21,12 @@ class Server:
 
     @property
     def get_devices(self):
-        """print the devices by their IDs"""
+        """return the devices"""
         return self.devices
+
+    def show_devices(self):
+        """nicely display the devices on the server"""
+        pprint.pprint(self.get_devices)
     
     def remove_all_devices(self):
         """disconnect all devices from the server"""
