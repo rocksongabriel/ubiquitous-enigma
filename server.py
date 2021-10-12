@@ -33,8 +33,19 @@ class Server:
         if not self.devices:
             print("There are no devices connected to the server, please connect a device ...")
         else:
-            pass
+            # device to assign job to
+            device = self.sort_devices()[0]
+            # assign currently assigned job
+            device.set_current_assigned_job(job_id)
+            # increase the device's number of tasks
+            device.increase_number_of_tasks()
+            # recalculate the pheromone level of the device
+            device.calculate_pheromone_level()
 
     def sort_devices(self):
         """This method will sort devices on this server according to pheromone level"""
         return sorted(self.get_devices, key=operator.attrgetter("get_pheromone_level"), reverse=True)
+
+    @staticmethod
+    def display_info_on_assigned_job(device, job_id):
+        print(f"Job with Job ID: {job_id} has been assigned to device with Device ID: {device.device_id}")
