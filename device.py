@@ -15,12 +15,16 @@ class Device:
         self.caculate_pheromone_level() # calculate the pheromone level when the device is created
         self.current_assigned_job = 0 # zero means no job jas been assigned currently, this will be set by the server
 
+    # number of tasks interface code 
+
     def increase_number_of_tasks(self):
         self.number_of_tasks += 1
 
     @property
     def get_number_of_tasks(self):
         return self.number_of_tasks
+
+    # pheromone level interface code
 
     def caculate_pheromone_level(self):
         """calculate the pheromone level based on the processing power and the assigned tasks"""
@@ -29,6 +33,17 @@ class Device:
     @property
     def get_pheromone_level(self):
         return self.pheromone_level
+
+    # processing power interface 
+
+    @property
+    def get_processing_power(self):
+        return self.processing_power
+
+    def set_processing_power(self, power):
+        self.processing_power = power
+
+    # currently assingned job interface 
 
     def set_current_assigned_job(self, job_id):
         self.current_assigned_job = job_id
@@ -40,5 +55,13 @@ class Device:
     def remove_current_assigned_job(self):
         self.current_assigned_job = 0
 
+    # device representations 
+
     def show_device_details(self):
         return f"Device ID: {self.device_id}, Processing Power: {self.processing_power}, Number of Tasks: {self.number_of_tasks}, Pheromone Level: {self.pheromone_level}"
+
+    def __repr__(self):
+        return f"Device(device_id={self.device_id}, processing_power={self.get_processing_power}, pheromone_level={self.get_pheromone_level})"
+
+    def __str__(self):
+        return f"Device ID: {self.device_id}, Pheromone Level: {self.get_pheromone_level}, Processing Power: {self.get_processing_power}, Number of Tasks: {self.get_number_of_tasks}"
