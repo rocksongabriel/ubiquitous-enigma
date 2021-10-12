@@ -30,7 +30,8 @@ def devices_and_server_setup():
 
 def program_menu():
     print("\nPress 'm'\t\t: to show this menu.")
-    print("Press 'a'\t\t: to show all devices on this server.")
+    print("Press 's'\t\t: to show all devices on this server.")
+    print("Press 'a'\t\t: to add a device to this server.")
     print("Press 'space bar'\t: to automatically assign a job.")
     print("Press 'b'\t\t: to manually assign a job.")
     print("Press 'esc' (escape key) to quit the server.")
@@ -44,6 +45,14 @@ def manual_job_creation(server):
     print("\n")
     server.assign_job(job_id)
 
+def add_device_to_server(server):
+    """Add a device to the running server"""
+    clear_input_key()
+    processing_power = int(input("Enter the processsing power of the device you want to add to this server: "))
+    device = Device(processing_power)
+    server.add_device(device)
+    print(f"Device: {device} has been added to the server.")
+
 
 # main application entry
 def app():
@@ -56,9 +65,11 @@ def app():
     # Listen to Keyboard
     def on_press(key):
         try:
-            if key.char == 'a':
+            if key.char == 's':
                 clear_input_key()
                 server.show_devices() # display all devices
+            elif key.char == 'a':
+                add_device_to_server(server) # add new device to the server
             elif key.char == 'b':
                 manual_job_creation(server) # manually create a job, and let the server assign a device
             elif key.char == 'm':
