@@ -74,7 +74,7 @@ class Server:
             "Pheromone Level": device.get_pheromone_level, 
             "Number of Tasks": device.get_number_of_tasks
         }
-        print(f"Job with Job ID: {job_id} has been assigned to device with Device ID: {device.device_id}, \nCurrent Status of Device: {device_status}")
+        print(f"Job with Job ID: {job_id} has been assigned to device with Device ID: {device.device_id}, \nCurrent Status of Device: {device_status}\n")
 
     def __repr__(self):
         return f"Server(devices={self.devices})"
