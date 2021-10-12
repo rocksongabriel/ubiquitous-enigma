@@ -38,8 +38,10 @@ class Server:
         return sorted(self.get_devices, key=operator.attrgetter("get_pheromone_level"), reverse=True)
 
     # all jobs managing interface
-    def add_job(self, job_id, assigned_device):
+    def _add_job(self, job_id, assigned_device):
         self.all_jobs[job_id] = assigned_device
+
+    # TODO add ability to reasign jobs, i.e: a particular job can be reassigned
 
     @property
     def get_all_jobs(self):
@@ -58,13 +60,17 @@ class Server:
             device.set_current_assigned_job(job_id) # assign currently assigned job
             device.increase_number_of_tasks() # increase the device's number of tasks
             device.calculate_pheromone_level() # recalculate the pheromone level of the device
-            self.add_job(job_id, device) # add job to all jobs
+            self._add_job(job_id, device) # add job to all jobs
             self.display_info_on_assigned_job(device, job_id)
 
 
     @staticmethod
     def display_info_on_assigned_job(device, job_id):
-        pprint.pprint(f"Job with Job ID: {job_id} has been assigned to device with Device ID: {device.device_id}")
+        device_status = {
+            "Pheromone Level": device.get_pheromone_level, 
+            "Number of Tasks": device.get_number_of_tasks
+        }
+        print(f"Job with Job ID: {job_id} has been assigned to device with Device ID: {device.device_id}, \nCurrent Status of Device: {device_status}")
 
     def __repr__(self):
         return f"Server(devices={self.devices})"
