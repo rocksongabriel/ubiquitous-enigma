@@ -29,11 +29,20 @@ def devices_and_server_setup():
 
 
 def program_menu():
+    print("\nPress 'm'\t\t: to show this menu.")
     print("Press 'a'\t\t: to show all devices on this server.")
     print("Press 'space bar'\t: to automatically assign a job.")
     print("Press 'b'\t\t: to manually assign a job.")
     print("Press 'esc' (escape key) to quit the server.")
 
+
+
+def manual_job_creation(server):
+    """This function will automatically assign a given job_id to a device"""
+    clear_input_key()
+    job_id = int(input("Enter the 'job id' of the job you want to assign: "))
+    print("\n")
+    server.assign_job(job_id)
 
 
 # main application entry
@@ -51,12 +60,15 @@ def app():
                 clear_input_key()
                 server.show_devices() # display all devices
             elif key.char == 'b':
-                print("b pressed ...")
+                manual_job_creation(server) # manually create a job, and let the server assign a device
+            elif key.char == 'm':
+                clear_input_key()
+                program_menu()
         except AttributeError:
             if key == Key.space:
                 global counter
                 clear_input_key()
-                server.assign_job(next(counter))
+                server.assign_job(next(counter)) # automatically assign next next
 
     def on_release(key):
         if key == Key.esc:

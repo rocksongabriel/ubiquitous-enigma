@@ -64,4 +64,4 @@ class Device:
         return f"Device(device_id={self.device_id}, processing_power={self.get_processing_power}, pheromone_level={self.get_pheromone_level}, number_of_tasks={self.get_number_of_tasks})"
 
     def __str__(self):
-        return f"Device ID: {self.device_id}, Pheromone Level: {self.get_pheromone_level}, Processing Power: {self.get_processing_power}, Number of Tasks: {self.get_number_of_tasks}"
+        return f"(Device ID: {self.device_id}, Pheromone Level: {self.get_pheromone_level}, Processing Power: {self.get_processing_power}, Number of Tasks: {self.get_number_of_tasks})"
