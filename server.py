@@ -29,7 +29,7 @@ class Server:
 
     def show_devices(self):
         """nicely display the devices on the server"""
-        pprint.pprint(self.get_devices)
+        console.print(self.get_devices)
     
     def remove_all_devices(self):
         """disconnect all devices from the server"""
@@ -71,7 +71,12 @@ class Server:
                 self._add_job(job_id, device) # add job to all jobs
                 self.display_info_on_assigned_job(device, job_id)
             else:
-                console.print(f"Job ID: [bold blue]{job_id}[/bold blue] is currently assigned to: {self.get_all_jobs[job_id]}")
+                console.print(
+                    f"Job ID: [bold blue]{job_id}[/bold blue] is currently assigned to: Device with ID: {self.get_all_jobs[job_id].device_id}"
+                    )
+                console.print(
+                    f"Status of device: {device.get_device_status()}\n"
+                )
 
 
     @staticmethod

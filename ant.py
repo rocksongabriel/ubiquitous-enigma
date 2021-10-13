@@ -1,13 +1,12 @@
 # Entry point of the app, the main app will be run here
 import itertools
 
-from pynput.keyboard import Controller, Key, Listener
-from rich.console import Console
+from pynput.keyboard import Key, Listener, Controller
 
 from device import Device
 from server import Server
+from rich.console import Console
 
-# instantiate third modules
 console = Console()
 keyboard = Controller()
 
@@ -54,7 +53,7 @@ def add_device_to_server(server):
     processing_power = int(input("Enter the processsing power of the device you want to add to this server: "))
     device = Device(processing_power)
     server.add_device(device)
-    console.print(f"Device: {device} has been added to the server.")
+    console.print(f"Device: ({device}) has been added to the server.")
 
 
 # main application entry
