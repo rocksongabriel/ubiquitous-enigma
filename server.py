@@ -18,7 +18,7 @@ class Server:
 
     def add_device(self, device):
         self.devices.append(device)
-        console.print(f"Device with processing power {device.get_processing_power} added to the server.")
+        console.print(f"[yellow]Device with processing power [red]{device.get_processing_power}[/red] added to the server.[yellow]")
 
     def add_devices(self, devices):
         self.devices.extend(devices)
@@ -30,7 +30,7 @@ class Server:
 
     def show_devices(self):
         """nicely display the devices on the server"""
-        console.print(self.get_devices)
+        console.print(self._sort_devices())
     
     def remove_all_devices(self):
         """disconnect all devices from the server"""
@@ -61,12 +61,14 @@ class Server:
     # show server details
     def show_current_status(self):
         status = {
+            "Devices On Server": self._sort_devices(),
             "Number of devices": len(self.get_devices),
             "Combined processing power of devices": sum([device.get_processing_power for device in self.get_devices]),
             "Number of jobs being handled on server": len(self.get_all_jobs.keys())
             }
         console.print("[bold magenta]Status of running server: [bold magenta]")
         pprint(status, expand_all=True)
+        console.print("\n")
 
     # job assignment interface
 
