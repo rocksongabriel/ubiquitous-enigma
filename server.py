@@ -57,6 +57,15 @@ class Server:
     def show_all_jobs(self):
         pprint.pprint(self.get_all_jobs)
 
+    # show server details
+    def get_current_status(self):
+        status = {
+            "Number of devices": len(self.get_devices),
+            "Combined processing power of devices": sum([device.get_processing_power for device in self.get_devices]),
+            "Number of jobs being handled on server": len(self.get_all_jobs.keys())
+            }
+        return status
+
     # job assignment interface
 
     def assign_job(self, job_id):

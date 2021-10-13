@@ -31,15 +31,16 @@ def devices_and_server_setup():
     server1 = Server(devices)
     return server1
 
+def server_start_info():
+    console.print("\n[bold yellow]Server running ...[bold yellow]")
 
 def program_menu():
-    console.print("\nPress 'm'\t\t: to show this menu.")
-    console.print("Press 's'\t\t: to show all devices on this server.")
-    console.print("Press 'a'\t\t: to add a device to this server.")
-    console.print("Press 'space bar'\t: to automatically assign a job.")
-    console.print("Press 'b'\t\t: to manually assign a job.")
-    console.print("Press 'esc' (escape key) to quit the server.")
-
+    console.print("\nPress 'm'\t\t: [bold blue]to show this menu.[bold blue]")
+    console.print("Press 's'\t\t: [bold blue]to show all devices on this server.[bold blue]")
+    console.print("Press 'a'\t\t: [bold blue]to add a device to this server.[bold blue]")
+    console.print("Press 'space bar'\t: [bold blue]to automatically assign a job.[bold blue]")
+    console.print("Press 'b'\t\t: [bold blue]to manually assign a job.[bold blue]")
+    console.print("[bold red]Press 'esc' (escape key) to quit the server.[bold red]")
 
 
 def manual_job_creation(server):
@@ -61,6 +62,10 @@ def add_device_to_server(server):
 def app():
     server = devices_and_server_setup()
 
+    # display server start info
+    server_start_info()
+    # display the status of the server
+    console.print(f"Status of the server: {server.get_current_status()}")
     # display menu
     program_menu()
 
