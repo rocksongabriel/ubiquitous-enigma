@@ -1,5 +1,8 @@
 # definition of the Device and it's functionality
 import uuid
+from rich.console import Console
+
+console = Console()
 
 
 class Device:

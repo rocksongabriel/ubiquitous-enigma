@@ -1,6 +1,9 @@
 # definition of the server and it's functionality
 import operator
 import pprint
+from rich.console import Console
+
+console = Console()
 
 
 class Server:
@@ -58,7 +61,7 @@ class Server:
 
     def assign_job(self, job_id):
         if not self.devices:
-            print("There are no devices connected to the server, please connect a device ...")
+            console.print("There are no devices connected to the server, please connect a device ...")
         else:
             device = self._sort_devices()[0] # device to assign job to
             device.set_current_assigned_job(job_id) # assign currently assigned job
@@ -68,7 +71,7 @@ class Server:
                 self._add_job(job_id, device) # add job to all jobs
                 self.display_info_on_assigned_job(device, job_id)
             else:
-                print (f"Job ID: {job_id} is currently assigned to: {self.get_all_jobs[job_id]}")
+                console.print(f"Job ID: [bold blue]{job_id}[/bold blue] is currently assigned to: {self.get_all_jobs[job_id]}")
 
 
     @staticmethod
@@ -77,7 +80,7 @@ class Server:
             "Pheromone Level": device.get_pheromone_level, 
             "Number of Tasks": device.get_number_of_tasks
         }
-        print(f"Job with Job ID: {job_id} has been assigned to device with Device ID: {device.device_id}, \nCurrent Status of Device: {device_status}\n")
+        console.print(f"Job with Job ID: [bold red]{job_id}[/bold red] has been assigned to device with Device ID: [bold red]{device.device_id}[/bold red], \nCurrent Status of Device: {device_status}\n")
 
     def __repr__(self):
         return f"Server(devices={self.devices})"

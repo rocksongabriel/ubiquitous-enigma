@@ -1,11 +1,14 @@
 # Entry point of the app, the main app will be run here
 import itertools
 
-from pynput.keyboard import Key, Listener, Controller
+from pynput.keyboard import Controller, Key, Listener
+from rich.console import Console
 
 from device import Device
 from server import Server
 
+# instantiate third modules
+console = Console()
 keyboard = Controller()
 
 # variables
@@ -18,7 +21,7 @@ counter = itertools.count(1)
 def clear_input_key():
     keyboard.press(Key.backspace)
     keyboard.release(Key.backspace)
-    print()
+    console.print()
 
 def devices_and_server_setup():
     # Create instances of Device
@@ -29,12 +32,12 @@ def devices_and_server_setup():
 
 
 def program_menu():
-    print("\nPress 'm'\t\t: to show this menu.")
-    print("Press 's'\t\t: to show all devices on this server.")
-    print("Press 'a'\t\t: to add a device to this server.")
-    print("Press 'space bar'\t: to automatically assign a job.")
-    print("Press 'b'\t\t: to manually assign a job.")
-    print("Press 'esc' (escape key) to quit the server.")
+    console.print("\nPress 'm'\t\t: to show this menu.")
+    console.print("Press 's'\t\t: to show all devices on this server.")
+    console.print("Press 'a'\t\t: to add a device to this server.")
+    console.print("Press 'space bar'\t: to automatically assign a job.")
+    console.print("Press 'b'\t\t: to manually assign a job.")
+    console.print("Press 'esc' (escape key) to quit the server.")
 
 
 
@@ -42,7 +45,7 @@ def manual_job_creation(server):
     """This function will automatically assign a given job_id to a device"""
     clear_input_key()
     job_id = int(input("Enter the 'job id' of the job you want to assign: "))
-    print("\n")
+    console.print("\n")
     server.assign_job(job_id)
 
 def add_device_to_server(server):
@@ -51,7 +54,7 @@ def add_device_to_server(server):
     processing_power = int(input("Enter the processsing power of the device you want to add to this server: "))
     device = Device(processing_power)
     server.add_device(device)
-    print(f"Device: {device} has been added to the server.")
+    console.print(f"Device: {device} has been added to the server.")
 
 
 # main application entry
