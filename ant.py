@@ -57,16 +57,28 @@ def program_menu():
 def manual_job_creation(server):
     """This function will automatically assign a given job_id to a device"""
     clear_input_key()
-    job_id = int(input("\nEnter the 'job id' of the job you want to assign: "))
-    server.assign_job(job_id)
+    while True:
+        try:
+            job_id = int(input("Enter the 'job id' of the job you want to assign: "))
+            server.assign_job(job_id)
+            break
+        except ValueError:
+            console.print("[red bold]Please enter integer only ...[/red bold]")
+            continue 
 
 def add_device_to_server(server):
     """Add a device to the running server"""
     clear_input_key()
-    processing_power = int(input("Enter the processsing power of the device you want to add to this server: "))
-    device = Device(processing_power)
-    server.add_device(device)
-    server.show_current_status()
+    while True:
+        try:
+            processing_power = float(input("Enter the processsing power of the device you want to add to this server: "))
+            device = Device(processing_power)
+            server.add_device(device)
+            server.show_current_status()
+            break
+        except ValueError:
+            console.print("[yellow red]Please enter decimal or integer only ...[/yellow red]")
+            continue    
 
 
 # main application entry

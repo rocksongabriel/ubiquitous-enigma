@@ -61,10 +61,10 @@ class Server:
     # show server details
     def show_current_status(self):
         status = {
-            "Devices On Server": self._sort_devices(),
             "Number of devices": len(self.get_devices),
             "Combined processing power of devices": sum([device.get_processing_power for device in self.get_devices]),
-            "Number of jobs being handled on server": len(self.get_all_jobs.keys())
+            "Number of jobs being handled on server": len(self.get_all_jobs.keys()),
+            "Devices On Server": self._sort_devices(),
             }
         console.print("[bold magenta]Status of running server: [bold magenta]")
         pprint(status, expand_all=True)
