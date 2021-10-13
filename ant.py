@@ -41,12 +41,12 @@ def program_menu():
     table.add_column("Command", justify="center", style="cyan", no_wrap=True)
     table.add_column("Purpose", style="blue", no_wrap=True)
 
+    table.add_row("Press 'space bar'", "[bold magenta]automatically assign a job.[bold magenta]")
     table.add_row("Press 'a'", "[bold blue]add a device to this server.[bold blue]")
     table.add_row("Press 'b'", "[bold blue]to manually assign a job.[bold blue]")
     table.add_row("Press 'd", "[bold blue]show all devices on this server.[bold blue]")
     table.add_row("Press 'm'", "[bold blue]show this menu.[bold blue]")
     table.add_row("Press 's'", "[bold blue]show the status of the server.[bold blue]")
-    table.add_row("Press 'space bar'", "[bold blue]automatically assign a job.[bold blue]")
     table.add_row("Press 'esc' (escape key)", "[bold red]quit the server and stop the program.[bold red]")
 
     console.print(table)
