@@ -75,17 +75,13 @@ class Server:
                     f"Job ID: [bold blue]{job_id}[/bold blue] is currently assigned to: Device with ID: {self.get_all_jobs[job_id].device_id}"
                     )
                 console.print(
-                    f"Status of device: {device.get_device_status()}\n"
+                    f"Current Status of device: {device.get_device_status()}\n"
                 )
 
 
     @staticmethod
     def display_info_on_assigned_job(device, job_id):
-        device_status = {
-            "Pheromone Level": device.get_pheromone_level, 
-            "Number of Tasks": device.get_number_of_tasks
-        }
-        console.print(f"Job with Job ID: [bold red]{job_id}[/bold red] has been assigned to device with Device ID: [bold red]{device.device_id}[/bold red], \nCurrent Status of Device: {device_status}\n")
+        console.print(f"\nJob with Job ID: [bold red]{job_id}[/bold red] has been assigned to device with Device ID: [bold red]{device.device_id}[/bold red], \nCurrent Status of Device: {device.get_device_status()}\n")
 
     def __repr__(self):
         return f"Server(devices={self.devices})"

@@ -1,11 +1,12 @@
 # Entry point of the app, the main app will be run here
 import itertools
+import time
 
-from pynput.keyboard import Key, Listener, Controller
+from pynput.keyboard import Controller, Key, Listener
+from rich.console import Console
 
 from device import Device
 from server import Server
-from rich.console import Console
 
 console = Console()
 keyboard = Controller()
@@ -20,6 +21,7 @@ counter = itertools.count(1)
 def clear_input_key():
     keyboard.press(Key.backspace)
     keyboard.release(Key.backspace)
+    time.sleep(.100) # give the pynput some time to clear the key the user pressed from the terminal
     console.print()
 
 def devices_and_server_setup():
@@ -43,8 +45,7 @@ def program_menu():
 def manual_job_creation(server):
     """This function will automatically assign a given job_id to a device"""
     clear_input_key()
-    job_id = int(input("Enter the 'job id' of the job you want to assign: "))
-    console.print("\n")
+    job_id = int(input("\nEnter the 'job id' of the job you want to assign: "))
     server.assign_job(job_id)
 
 def add_device_to_server(server):

@@ -16,10 +16,9 @@ class Device:
         self.processing_power = processing_power
         self.number_of_tasks = 0
         self.pheromone_level = 0
-        # calculate the pheromone level when the device is created
-        self.calculate_pheromone_level()
-        # zero means no job jas been assigned currently, this will be set by the server
-        self.current_assigned_job = 0
+        self.current_assigned_job = 0 # zero means no job jas been assigned currently, this will be set by the server
+        self.calculate_pheromone_level() # calculate the pheromone level when the device is created
+        
 
     # number of tasks interface code
 
