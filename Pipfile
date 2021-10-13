@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 pynput = "*"
+rich = "*"
 
 [dev-packages]
 autopep8 = "*"
