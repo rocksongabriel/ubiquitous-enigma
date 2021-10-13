@@ -1,7 +1,7 @@
 # definition of the server and it's functionality
 import operator
-import pprint
 from rich.console import Console
+from rich.pretty import pprint
 
 console = Console()
 
@@ -18,6 +18,7 @@ class Server:
 
     def add_device(self, device):
         self.devices.append(device)
+        console.print(f"Device with processing power {device.get_processing_power} added to the server.")
 
     def add_devices(self, devices):
         self.devices.extend(devices)
@@ -55,16 +56,17 @@ class Server:
         return self.all_jobs
 
     def show_all_jobs(self):
-        pprint.pprint(self.get_all_jobs)
+        pprint(self.get_all_jobs,expand_all=True)
 
     # show server details
-    def get_current_status(self):
+    def show_current_status(self):
         status = {
             "Number of devices": len(self.get_devices),
             "Combined processing power of devices": sum([device.get_processing_power for device in self.get_devices]),
             "Number of jobs being handled on server": len(self.get_all_jobs.keys())
             }
-        return status
+        console.print("[bold magenta]Status of running server: [bold magenta]")
+        pprint(status, expand_all=True)
 
     # job assignment interface
 

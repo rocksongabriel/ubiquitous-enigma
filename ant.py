@@ -35,11 +35,11 @@ def server_start_info():
     console.print("\n[bold yellow]Server running ...[bold yellow]")
 
 def program_menu():
-    console.print("\nPress 'm'\t\t: [bold blue]to show this menu.[bold blue]")
-    console.print("Press 's'\t\t: [bold blue]to show all devices on this server.[bold blue]")
-    console.print("Press 'a'\t\t: [bold blue]to add a device to this server.[bold blue]")
-    console.print("Press 'space bar'\t: [bold blue]to automatically assign a job.[bold blue]")
+    console.print("\nPress 'a'\t\t: [bold blue]to add a device to this server.[bold blue]")
     console.print("Press 'b'\t\t: [bold blue]to manually assign a job.[bold blue]")
+    console.print("Press 'm'\t\t: [bold blue]to show this menu.[bold blue]")
+    console.print("Press 's'\t\t: [bold blue]to show all devices on this server.[bold blue]")
+    console.print("Press 'space bar'\t: [bold blue]to automatically assign a job.[bold blue]")
     console.print("[bold red]Press 'esc' (escape key) to quit the server.[bold red]")
 
 
@@ -55,7 +55,7 @@ def add_device_to_server(server):
     processing_power = int(input("Enter the processsing power of the device you want to add to this server: "))
     device = Device(processing_power)
     server.add_device(device)
-    console.print(f"Device: ({device}) has been added to the server.")
+    server.show_current_status()
 
 
 # main application entry
@@ -65,7 +65,7 @@ def app():
     # display server start info
     server_start_info()
     # display the status of the server
-    console.print(f"Status of the server: {server.get_current_status()}")
+    server.show_current_status()
     # display menu
     program_menu()
 
