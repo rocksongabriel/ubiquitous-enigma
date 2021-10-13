@@ -4,6 +4,7 @@ import time
 
 from pynput.keyboard import Controller, Key, Listener
 from rich.console import Console
+from rich.progress import track
 from rich.table import Table
 
 from device import Device
@@ -81,6 +82,14 @@ def add_device_to_server(server):
             continue    
 
 
+def shutdown_server():
+    console.print("\n")
+    console.print("[yellow]Server shutdown will be initialized now, please wait...[yellow]")
+    time.sleep(1)
+    for _ in track(range(14), description="[red bold]Shutting down server ...",):
+        time.sleep(.500)
+    console.print("\n")
+
 # main application entry
 def app():
     server = devices_and_server_setup()
@@ -117,8 +126,8 @@ def app():
 
     def on_release(key):
         if key == Key.esc:
-         # stop the listener
-         return False
+            shutdown_server()
+            return False
 
     # Listen to key entry
     with Listener(on_press=on_press, on_release=on_release) as listener:
