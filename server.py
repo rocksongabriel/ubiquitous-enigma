@@ -30,6 +30,7 @@ class Server:
 
     def show_devices(self):
         """nicely display the devices on the server"""
+        console.print("[bold red]Devices on Server[/bold red]")
         console.print(self._sort_devices())
     
     def remove_all_devices(self):
