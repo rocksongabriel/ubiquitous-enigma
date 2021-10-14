@@ -1,6 +1,6 @@
 # definition of the Device and it's functionality
-import uuid
 from rich.console import Console
+import itertools
 
 console = Console()
 
@@ -9,10 +9,10 @@ class Device:
     """
     Create a device, passing the constructor the device's processing power
     """
-
+    counter = itertools.count(1)
     def __init__(self, processing_power):
         # a devices id is unique, so it is generated when the devices is being added to the server
-        self.device_id = uuid.uuid4()
+        self.device_id = next(Device.counter)
         self.processing_power = processing_power
         self.number_of_tasks = 0
         self.pheromone_level = 0
