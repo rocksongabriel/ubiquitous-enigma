@@ -80,7 +80,6 @@ class Server:
             device = self._sort_devices()[0] # device to assign job to
             device.set_current_assigned_job(job_id) # assign currently assigned job
             device.increase_number_of_tasks() # increase the device's number of tasks
-            device.calculate_pheromone_level() # recalculate the pheromone level of the device
             if job_id not in self.get_all_jobs.keys():
                 self._add_job(job_id, device) # add job to all jobs
                 self.display_info_on_assigned_job(device, job_id)
