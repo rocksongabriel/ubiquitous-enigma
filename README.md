@@ -20,4 +20,8 @@ If all the above was done successfully, run the program by using  `python ant.py
 
 * [Rich](https://github.com/willmcgugan/rich, "Rich") - Rich is a Python library for rich text and beautiful formatting in the terminal.
 
-## Project Images
+## Project Video
+
+
+https://user-images.githubusercontent.com/82952481/137403844-85cab35d-e91d-47c7-8fad-9da1485174db.mp4
+
