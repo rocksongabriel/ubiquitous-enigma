@@ -114,6 +114,7 @@ def app():
             elif key.char == 'a':
                 add_device_to_server(server) # add new device to the server
             elif key.char == 'b':
+                global counter
                 manual_job_creation(server,counter)
             elif key.char == 's': 
                 clear_input_key()
@@ -123,7 +124,6 @@ def app():
                 program_menu()
         except AttributeError:
             if key == Key.space:
-                global counter
                 # Aha, so this is wehre you get the next task, now follow my cursor
                 clear_input_key()
                 server.assign_job(next(counter)) # automatically assign next next
