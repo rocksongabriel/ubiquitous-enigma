@@ -31,6 +31,7 @@ class Server:
 
     def show_devices(self):
         """nicely display the devices on the server"""
+        console.print("[bold red]Devices on Server[/bold red]")
         console.print(self._sort_devices())
     
     def remove_all_devices(self):
@@ -71,6 +72,7 @@ class Server:
         pprint(status, expand_all=True)
         console.print("\n")
 
+<<<<<<< HEAD
     def assign_job_and_update_pheromone_level(self, device, job_id):
         device.set_current_assigned_job(job_id) # assign currently assigned job
         device.increase_number_of_tasks() # increase the device's number of tasks
@@ -78,6 +80,18 @@ class Server:
     
     def update_alljobs_dictionary(self,job_id,device):
         if job_id not in self.get_all_jobs.keys():
+=======
+    # job assignment interface
+
+    def assign_job(self, job_id):
+        if not self.devices:
+            console.print("There are no devices connected to the server, please connect a device ...")
+        else:
+            device = self._sort_devices()[0] # device to assign job to
+            device.set_current_assigned_job(job_id) # assign currently assigned job
+            device.increase_number_of_tasks() # increase the device's number of tasks
+            if job_id not in self.get_all_jobs.keys():
+>>>>>>> c730eae81c6bf2c57b87a4001d896ae99fbbf006
                 self._add_job(job_id, device) # add job to all jobs
                 self.display_info_on_assigned_job(device, job_id)
         else:

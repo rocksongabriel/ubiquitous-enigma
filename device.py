@@ -25,6 +25,8 @@ class Device:
     def increase_number_of_tasks(self):
         self.number_of_tasks += 1
 
+        self.calculate_pheromone_level() # recalculate pheromone level
+
     @property
     def get_number_of_tasks(self):
         return self.number_of_tasks
@@ -48,6 +50,8 @@ class Device:
 
     def set_processing_power(self, power):
         self.processing_power = power
+
+        self.calculate_pheromone_level()
 
     # device status interface
     def get_device_status(self):
