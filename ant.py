@@ -58,13 +58,13 @@ def program_menu():
 
 
 
-def manual_job_creation(server,counter):
+def manual_job_creation(server, job_id):
     """This function will automatically assign a given job_id to a device"""
     clear_input_key()
     while True:
         try:
             device_id = int(input("Enter the 'device ID'  of device you want to assign the job to: ")) 
-            server.manually_assign_job(device_id,counter) 
+            server.manually_assign_job(device_id, job_id)      
             break
         except ValueError:
             console.print("[red bold]Please enter integer only ...[/red bold]")
@@ -115,7 +115,7 @@ def app():
                 add_device_to_server(server) # add new device to the server
             elif key.char == 'b':
                 global counter
-                manual_job_creation(server,counter)
+                manual_job_creation(server, next(counter))
             elif key.char == 's': 
                 clear_input_key()
                 server.show_current_status() # display the current status of the server

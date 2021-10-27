@@ -107,22 +107,23 @@ class Server:
                 self.update_alljobs_dictionary(job_id,device)
                 
 
-    # Get the device with the given device id from self.devices
+    # Get the device with the given device id from self.devices # todo - this algorithm is inefficient for a large number of devices, optimize it with a binary search tree algorithm
     def find_device_with_id(self,device_id):
         if not self.devices:
             console.print("There are no devices connected to the server, please connect a device ...")
         else:
+            found = False
             for device in self.devices:
-                if device.id == device_id:
-                    the_device = device
-                else:
-                    print("Device not found")
-            return the_device 
+                if device.device_id == device_id:
+                    found = True
+                    return device
+            if not found:
+                console.print("[bold red]Sorry, device was not found[/bold red]")    
 
 
     def manually_assign_job(self, device_id, job_id):
         device_to_assign_task = self.find_device_with_id(device_id)
-        self.assign_job(job_id,device_to_assign_task)
+        self.assign_job(job_id, device_to_assign_task)
 
 
     @staticmethod
